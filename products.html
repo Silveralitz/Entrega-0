@@ -4,12 +4,13 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
+  <title>eMercado - Productos</title>
 
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/productsstyle.css">
 </head>
 
 <body>
@@ -19,6 +20,15 @@
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <li class="nav-item dropdown" id="userDropdownContainerMobile" style="display:none;">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdownMobile" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <span class="colorUserMobile" id="userNameMobile"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <li><button class="dropdown-item" id="logoutBtnMobile">Cerrar sesión</button></li>
+        </ul>
+      </li>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
@@ -30,27 +40,89 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item dropdown" id="userDropdownContainer" style="display:none;">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <span id="userName"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li><button class="dropdown-item" id="logoutBtn">Cerrar sesión</button></li>
+            </ul>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <main class="pb-5 container">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div class="text-md-center text-start pt-md- pt-4 m-md- m-3">
+      <h2 id="cat-title">Productos</h2>
+      <p class="lead">Verás aquí todos los productos disponibles.</p>
+    </div>
+
+    <!-- Barra de búsqueda añadida aquí -->
+    <div class="search-container">
+      <input type="search" id="searchInput">
+      <button class="clear-search" id="clearSearch">×</button>
+      <button class="search-btn" id="searchButton">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+
+    <!-- Orden filtrado -->
+    <div class="row mb-4 ">
+      <div class="d-flex justify-content-start justify-content-md-center mb-4 ms-2 ms-md-0">
+        <div class="btn-group" role="group">
+          <input type="radio" class="btn-check" name="options" id="sortAsc">
+          <label class="btn btn-outline-secondary d-none d-md-block " for="sortAsc">Menor precio</label>
+          <label class="btn btn-outline-secondary d-md-none d-block redondearBtnIzquierda" for="sortAsc">&lt; Precio</label>
+
+          <input type="radio" class="btn-check" name="options" id="sortDesc">
+          <label class="btn btn-outline-secondary  d-none d-md-block" for="sortDesc">Mayor precio</label>
+          <label class="btn btn-outline-secondary d-md-none d-block" for="sortDesc">&gt; Precio</label>
+
+          <input type="radio" class="btn-check" name="options" id="sortByCount" checked>
+          <label class="btn btn-outline-secondary d-none d-md-block redondearBtnDerecha" for="sortByCount">Más vendidos</label>
+          <label class="btn btn-outline-secondary d-md-none d-block" for="sortByCount">+ Vendidos</label>
+        </div>
       </div>
     </div>
+
+    <!-- Filtro precios -->
+    <div class="d-flex justify-content-start justify-content-md-center mb-4 ms-2 ms-md-0" id="barraprecio">
+      <div class="row align-items-center g-2 w-50">
+        <div class="col-12 col-md-2">
+          <h6 class="mb-0 text-md-end fw-bold">Precio</h6>
+        </div>
+        <div class="col-6  col-md-2">
+          <input class="form-control" type="number" placeholder="mín." id="rangeFilterPriceMin">
+        </div>
+        <div class="col-6 col-md-2">
+          <input class="form-control" type="number" placeholder="máx." id="rangeFilterPriceMax">
+        </div>
+        <div class="col-12 col-md-3 d-flex gap-2">
+          <button class="btn btn-primary w-100" id="rangeFilterPrice">Filtrar</button>
+          <button class="btn btn-outline-secondary w-100" id="clearRangeFilter">Limpiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container box-transparente py-4">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="prod-list-container">
+
+      </div>
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -59,6 +131,7 @@
       <div></div>
     </div>
   </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>

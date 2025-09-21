@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
+  font-family: "Verdana", serif !important;
 }
 
 .jumbotron .display-4 {
@@ -32,8 +32,8 @@ nav a {
   height: 50vh;
   padding: 5em inherit;
   margin-bottom: 0;
-  background-color: #53C0FB;
-  background: url('../img/cover_back.png');
+  background-color: #53c0fb;
+  background: url("../img/cover_back.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -73,12 +73,12 @@ footer {
 }
 
 footer p {
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
 .site-header a {
   color: white;
-  transition: ease-in-out color .15s;
+  transition: ease-in-out color 0.15s;
 }
 
 .site-header .dropdown-menu a {
@@ -86,7 +86,7 @@ footer p {
 }
 
 .dropzone {
-  border: 2px dashed #0087F7;
+  border: 2px dashed #0087f7;
   border-radius: 5px;
   background: white;
 }
@@ -187,4 +187,48 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+/* Smartphones (hasta 767px) */
+@media (max-width: 768px) {
+  #cat-title {
+    color: black;
+    margin-bottom: 20px;
+    display: block;
+    font-size: xxx-large;
+    margin-top: -5%;
+  }
+
+  .lead {
+    color: black;
+    font-size: x-large;
+  }
+
+  .redondearBtnIzquierda {
+    border-radius: 12px 0 0 12px !important;
+  }
+
+  .colorUserMobile {
+    color: #ffffffbf;
+  }
+}
+
+/* Tablets (768px a 1024px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  #cat-title {
+    color: black;
+    margin-bottom: 20px;
+    display: block;
+    font-size: xxx-large;
+  }
+}
+
+/* Escritorio (desde 1025px en adelante) */
+@media (min-width: 1024px) {
+  #cat-title {
+    color: black;
+    margin-bottom: 20px;
+    display: block;
+    font-size: xxx-large;
+  }
 }

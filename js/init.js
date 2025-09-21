@@ -39,3 +39,22 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  let usuario = localStorage.getItem("usuarioLogueado");
+  if (usuario) {
+  let userDropdownContainer = document.documentElement.clientWidth > 768 ? document.getElementById("userDropdownContainer") : document.getElementById("userDropdownContainerMobile");
+  let userName = document.documentElement.clientWidth > 768 ? document.getElementById("userName") : document.getElementById("userNameMobile");
+    userDropdownContainer.style.display = "block";
+    userName.textContent = usuario;
+    let logoutBtn = document.documentElement.clientWidth > 768 ? document.getElementById("logoutBtn") : document.getElementById("logoutBtnMobile");
+    logoutBtn.addEventListener("click", function () {
+      localStorage.removeItem("usuarioLogueado");
+      window.location.href = "login.html";
+    });
+  }
+});
+
+if (!localStorage.getItem('usuarioLogueado')) {
+    window.location.href = 'login.html';
+}
